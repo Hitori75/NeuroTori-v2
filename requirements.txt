@@ -1,0 +1,7 @@
+﻿Flask==2.3.3
+tensorflow==2.18.0
+numpy==1.26.0
+Pillow==10.0.1
+opencv-python==4.8.1.78
+huggingface_hub==0.24.5
+patool==2.0.0

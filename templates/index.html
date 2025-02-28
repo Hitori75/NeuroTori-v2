@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroTori</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Pop-up Disclaimer -->
+    <div class="popup-overlay" id="disclaimer-popup">
+        <div class="popup-content">
+            <h2>Welcome to NeuroTori!</h2>
+            <p><strong>Disclaimer:</strong> This is an experimental model still under testing. Results may contain errors and should not be relied upon for medical decisions.</p>
+            <button id="close-popup-btn">Understood</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="card">
+            <h1>NeuroTori <span class="title-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b5e20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 1 7 7v10a3 3 0 0 1-6 0V9a7 7 0 0 1 6-7"/>
+                </svg>
+            </span></h1>
+            <p>Upload an MRI scan to detect brain tumors with advanced Deep Learning models</p>
+            <label class="dark-mode-toggle">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </header>
+
+        <main>
+            <section class="card upload-section">
+                <label for="image-input" class="drop-zone" id="drop-zone">
+                    <p>Upload MRI Image</p>
+                    <input type="file" id="image-input" accept="image/*" hidden>
+                </label>
+                <div class="model-select">
+                    <label for="model-choice">Select Model:</label>
+                    <select id="model-choice">
+                        <option value="custom">HitoVG-16T</option>
+                    </select>
+                </div>
+                <button id="predict-btn">
+                    Analyze
+                    <span class="button-icon">🚀</span>
+                </button>
+            </section>
+
+            <section class="card result-section" id="result-section">
+                <div class="progress-bar-container" id="progress-bar-container" style="display: none;">
+                    <div class="loader"></div>
+                </div>
+                <div class="result-content" id="result-content" style="display: none;">
+                    <h2>Results</h2>
+                    <div class="result-header">
+                        <span class="label label-accuracy" id="accuracy-label">Accuracy: <span id="accuracy"></span></span>
+                        <span class="label label-prediction" id="prediction-label">Prediction: <span id="prediction"></span></span>
+                    </div>
+                    <div class="result-details">
+                        <div class="image-card uploaded">
+                            <p class="image-title">Uploaded Image</p>
+                            <img class="uploaded-image" id="uploaded-img" src="" alt="Uploaded Image">
+                        </div>
+                        <div class="image-card processed">
+                            <p class="image-title">Processed Image</p>
+                            <img class="processed-image" id="processed-img" src="" alt="Processed Image">
+                        </div>
+                    </div>
+                    <button id="download-report-btn">
+                        Download Report
+                        <span class="button-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="card">
+            <p>by <span class="author">Hitori</span></p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
